@@ -2,4 +2,5 @@
   hosts: WinMaster
   roles:
           - win_global
+          - audit_win_server
 

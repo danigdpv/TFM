@@ -1,0 +1,37 @@
+directordeorquesta ansible_ssh_user=phantom ansible_password={{ ansible_pass }}. ansible_host=directordeorquesta
+pinguino ansible_ssh_user=ansible ansible_host=pinguino
+padawan ansible_host=padawan ansible_connection=winrm ansible_password={{ ansible_pass }}. ansible_user=Administrator ansible_winrm_server_cert_validation=ignore
+anillounico ansible_host=anillounico ansible_connection=winrm ansible_password={{ ansible_pass }}. ansible_user=Administrator ansible_winrm_server_cert_validation=ignore
+elrevisor ansible_ssh_user=ansible ansible_host=elrevisor
+sherlock ansible_ssh_user=ansible ansible_host=sherlock
+elojoquetodolove ansible_ssh_user=ansible ansible_host=elojoquetodolove
+WinMaster ansible_host=WinMaster ansible_connection=winrm ansible_password={{ ansible_pass }}. ansible_user=Administrator ansible_winrm_server_cert_validation=ignore
+masternode ansible_host=masternode ansible_ssh_user=tfmuser ansible_ssh_pass={{ ansible_pass }}.
+ansible ansible_host=localhost ansible_ssh_user=tfmuser ansible_ssh_pass={{ ansible_pass }}.
+proxmox ansible_host=18.18.18.4 ansible_ssh_user=ansible
+
+[linux]
+pinguino
+elojoquetodolove
+elrevisor
+directordeorquesta
+sherlock
+ansible
+
+[ubuntu]
+pinguino
+elojoquetodolove
+elrevisor
+sherlock
+ansible
+
+[wazuh-agent-ubuntu]
+pinguino
+elojoquetodolove
+elrevisor
+ansible
+
+[windows]
+anillounico
+padawan
+
