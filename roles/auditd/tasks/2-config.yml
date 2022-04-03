@@ -1,0 +1,46 @@
+---
+- name: replace GRUB_CMDLINE
+  ansible.builtin.replace:
+      path: /etc/default/grub
+      regexp: GRUB_CMDLINE_LINUX=\"\"
+      replace: GRUB_CMDLINE_LINUX="audit=1"
+
+- name:  insert ausit_backlog_limit in grub
+  lineinfile:
+      path: /etc/default/grub
+      line: GRUB_CMDLINE_LINUX="audit_backlog_limit=8192"
+      insertafter: EOF
+
+- name: update grub
+  command: update-grub
+
+- name: Copy auditd.conf 
+  template:
+    src: auditd.conf.j2
+    dest: "/etc/audit/auditd.conf"
+
+- name: Sets default ACL for splunk on /var/log
+  ansible.posix.acl:
+    path: /var/log/
+    entity: splunk
+    etype: user
+    permissions: r
+    default: yes
+    state: present
+
+- name: Sets default ACL for splunk on /var/log
+  ansible.posix.acl:
+    path: /var/log/audit/
+    entity: splunk
+    etype: user
+    permissions: r
+    default: yes
+    state: present
+
+- name: Copy rules 
+  template:
+    src: cis.rules.j2
+    dest: "/etc/audit/rules.d/cis.rules"
+
+- name: reboot
+  ansible.builtin.reboot:

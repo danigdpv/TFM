@@ -1,0 +1,6 @@
+---
+- include_tasks: 1-set-hostname.yml
+- include_tasks: 2-disable-defender.yml
+- include_tasks: 3-enable-ps-logging.yml
+- include_tasks: 4-enable-4688-cmd-line-audit.yml
+- include_tasks: 5-security-configure-logging.yml

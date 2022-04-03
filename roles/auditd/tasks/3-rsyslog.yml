@@ -1,0 +1,26 @@
+---
+- name: Touch /var/log/messages
+  ansible.builtin.file:
+    path: /var/log/messages
+    state: touch
+    mode: u=rw,g=r,o=r
+
+- name: Copy rsyslog.conf 
+  template:
+    src: 50-default.conf.j2
+    dest: "/etc/rsyslog.d/50-default.conf"
+
+
+- name: Copy rsyslog logrotate
+  template:
+    src: rsyslog.j2
+    dest: "/etc/logrotate.d/rsyslog"
+
+- name: force logrotate
+  command: logrotate -f /etc/logrotate.d/rsyslog
+
+
+- name: Restart rsyslog
+  service: 
+    name: rsyslog 
+    state: restarted

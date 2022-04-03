@@ -1,0 +1,5 @@
+---
+  - name: give new machine-id
+    tags: newid
+    ansible.builtin.command: systemd-machine-id-setup
+ 

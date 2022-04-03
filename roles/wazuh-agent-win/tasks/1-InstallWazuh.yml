@@ -1,0 +1,15 @@
+- name: Copy installwazuh to host
+  win_copy:
+    src: "installwazuh.ps1"
+    dest: 'C:\installwazuh.ps1'
+
+- name: Install Wazuh
+  win_shell: powershell.exe  C:\installwazuh.ps1
+  register: win_shell_output
+
+
+- name: Copy local_internal_options.conf 
+  win_template:
+    src: local_internal_options.conf.j2
+    dest: C:\Program Files (x86)\ossec-agent\local_internal_options.conf
+

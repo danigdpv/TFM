@@ -1,0 +1,5 @@
+  - name: remove /etc/machine-id
+    tags: rmfile
+    ansible.builtin.file:
+        path: /etc/machine-id
+        state: absent

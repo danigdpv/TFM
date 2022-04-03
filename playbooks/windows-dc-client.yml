@@ -1,0 +1,6 @@
+- name: Configura el DC para el entorno de pruebas
+  hosts: padawan
+  roles:
+#        - win-dns-client
+        - win-splunk
+        - sysmon

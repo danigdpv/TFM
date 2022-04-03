@@ -1,0 +1,6 @@
+- hosts: directordeorquesta
+  gather_facts: False
+  become: yes
+  roles:
+    - uf-linux-centos
+    - auditd-centos

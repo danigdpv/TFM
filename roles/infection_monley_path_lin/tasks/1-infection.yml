@@ -1,0 +1,30 @@
+- name: Create path
+  ansible.builtin.file:
+    path: /etc/topsecret
+    state: directory
+    mode: '0777'
+
+- name: copy topsecret
+  ansible.builtin.copy:
+    src: topsecret.txt
+    dest: /etc/topsecret/topsecret"{{ item }}".txt
+    owner: ansible
+    group: ansible
+    mode: 0777
+  with_sequence: start=0 end=1
+
+
+- name: Crear usuario infection
+  ansible.builtin.user:
+    name: infection
+    password: "{{ password_monkey | password_hash('sha512') }}"
+
+- name: add ansible to sudoers
+  tags: ansiblesudoers
+  lineinfile:
+      path: /etc/sudoers.d/infection
+      line: 'infection ALL=(ALL) NOPASSWD: ALL'
+      state: present
+      mode: 0440
+      create: yes
+      validate: 'visudo -cf %s'

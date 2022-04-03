@@ -1,0 +1,5 @@
+- name: Configura las configuraciones iniciales comunes de un servidor windows
+  hosts: WinMaster
+  roles:
+          - win_global
+

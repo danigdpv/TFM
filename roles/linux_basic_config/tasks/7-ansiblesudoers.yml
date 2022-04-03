@@ -1,0 +1,10 @@
+---
+  - name: add ansible to sudoers
+    tags: ansiblesudoers
+    lineinfile:
+        path: /etc/sudoers.d/ansibleuser
+        line: 'ansible ALL=(ALL) NOPASSWD: ALL'
+        state: present
+        mode: 0440
+        create: yes
+        validate: 'visudo -cf %s'

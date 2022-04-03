@@ -1,0 +1,61 @@
+---
+- name: modifyTemplate
+  community.general.proxmox_kvm:
+     api_host: "{{ api_host }}"
+     api_user: "{{ api_user }}" 
+     api_token_id: "{{ api_token_id }}"
+     api_token_secret: "{{ api_token_secret }}"
+     name: masternode
+     node: cosasdecasa
+     cores: "{{ cores }}"
+     memory: "{{ memory }}"
+     update: yes
+  tags: template
+
+- name: Clone VM   
+  community.general.proxmox_kvm:
+     api_host: "{{ api_host }}"
+     api_user: "{{ api_user }}" 
+     api_token_id: "{{ api_token_id }}"
+     api_token_secret: "{{ api_token_secret }}"
+     clone: loquesea
+     vmid: 105       
+     newid: "{{ new_id }}"
+     name: "{{ name_machine }}"
+     node: cosasdecasa
+     format: unspecified
+     full: yes
+     tags: tfm
+     timeout: 600
+  tags: create_linux
+
+- name: Start VM
+  community.general.proxmox_kvm:
+     api_host: "{{ api_host }}"
+     api_user: "{{ api_user }}" 
+     api_token_id: "{{ api_token_id }}"
+     api_token_secret: "{{ api_token_secret }}"
+     vmid: "{{ new_id }}"
+     node: cosasdecasa
+     state: started
+  tags: start_linux
+  
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+

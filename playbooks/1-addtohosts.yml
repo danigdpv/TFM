@@ -1,0 +1,5 @@
+- hosts: localhost
+  gather_facts: False
+  become: true
+  roles:
+    - add_linux_to_hosts

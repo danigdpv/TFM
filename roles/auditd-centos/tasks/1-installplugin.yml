@@ -1,0 +1,14 @@
+- name: Ensure auditd dependencies are present
+  yum:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: 
+    - audispd-plugins
+    - acl
+
+
+- name: enable auditd
+  service: 
+    name: auditd
+    enabled: yes

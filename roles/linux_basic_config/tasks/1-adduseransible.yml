@@ -1,0 +1,8 @@
+---
+  - name: add user ansible
+    tags: adduser
+    ansible.builtin.user:
+        name: ansible
+        uid: 2000
+        create_home: yes
+        

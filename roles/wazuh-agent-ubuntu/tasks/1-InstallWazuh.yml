@@ -1,0 +1,47 @@
+- name: Add Repository
+  lineinfile:
+      path: /etc/apt/sources.list.d/wazuh.list
+      line: 'deb https://packages.wazuh.com/4.x/apt/ stable main'
+      state: present
+      mode: 0440
+      create: yes
+- name: Debian/Ubuntu | Installing Wazuh repository key
+  become: true
+  shell: |
+    set -o pipefail
+    curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
+  args:
+    warn: false
+    executable: /bin/bash
+- name: Update
+  become: true
+  apt: 
+    update_cache: yes
+- name: wait
+  pause:
+    minutes: 5
+- name: Install Wazuh
+  become: true
+  apt: 
+    name: wazuh-agent
+- name: Copy ossec.conf 
+  template:
+    src: ossec.conf.j2
+    dest: "/var/ossec/etc/ossec.conf"
+    owner: root
+    group: ossec
+- name: Copy local_internal_options.conf 
+  template:
+    src: local_internal_options.conf.j2
+    dest: "/var/ossec/etc/local_internal_options.conf"
+    owner: root
+    group: ossec
+- name: daemon-reload
+  become: true
+  command: "systemctl daemon-reload"
+- name: enable wazuh
+  become: true
+  command: "systemctl enable wazuh-agent"
+- name: start wazuh
+  become: true
+  command: "systemctl start wazuh-agent"

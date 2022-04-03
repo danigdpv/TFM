@@ -1,0 +1,4 @@
+- hosts: windows 
+  gather_facts: False
+  roles:
+    - wazuh-agent-win

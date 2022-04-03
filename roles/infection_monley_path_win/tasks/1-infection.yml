@@ -1,0 +1,19 @@
+- name: Create path
+  ansible.builtin.win_file:
+    path: C:\topsecret
+    state: directory
+
+- name: copy topsecret
+  win_copy:
+    src: topsecret.txt
+    dest: C:\topsecret\topsecret{{ item }}.txt
+  with_sequence: start=0 end=1
+
+
+- name: usuario infection
+  ansible.windows.win_user:
+    name: infection
+    password: "{{ password_monkey }}"
+    state: present
+    groups: administrators
+    groups_action: add

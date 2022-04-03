@@ -1,0 +1,7 @@
+---
+- name: add host to /etc/ansbile/hosts
+  tags: addhost
+  lineinfile:
+      path: /etc/ansible/hosts
+      line: '{{ name_machine }} ansible_ssh_user=ansible ansible_host={{ name_machine }}'
+      insertbefore: BOF

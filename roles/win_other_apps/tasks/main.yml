@@ -1,0 +1,9 @@
+---
+- include_tasks: 1-install_firefox.yml
+  ignore_errors: yes
+- include_tasks: 2-install_notepadplusplus.yml
+  ignore_errors: yes
+- include_tasks: 3-install_git.yml
+  ignore_errors: yes
+- include_tasks: 4-install_7zip.yml
+  ignore_errors: yes

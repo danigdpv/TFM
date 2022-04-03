@@ -1,0 +1,20 @@
+- name: check if phantom is installed
+  stat: path=/opt/phantom
+  register: phantom_path
+
+- name: debug print if phantom is installed
+  debug: msg='phantom is already installed under /opt/phantom'
+  when: phantom_path.stat.exists
+
+- name: install phantom
+  tags: install
+  yum:
+    name: '{{ phantom_repo_url }}'
+    state: present
+  when: not phantom_path.stat.exists
+
+# installing apps takes 15+ minutes longer, so later we will install just the apps we need
+- name: run the phantom install script without apps
+  shell: printf "{{phantom_community_username}}\n{{phantom_community_password}}\n" | /opt/phantom/bin/phantom_setup.sh install --no-prompt --without-apps
+  async: 600
+  poll: 60

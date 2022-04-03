@@ -1,0 +1,5 @@
+---
+  - name: Set hostname
+    tags: sethostname
+    ansible.builtin.hostname:
+        name: "{{ name_machine }}"

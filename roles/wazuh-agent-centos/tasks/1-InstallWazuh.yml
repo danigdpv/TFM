@@ -1,0 +1,43 @@
+- name: Install Wazuh repo
+  yum_repository:
+    name: wazuh_repo
+    description: Wazuh repository
+    baseurl: https://packages.wazuh.com/4.x/yum/
+    gpgkey: https://packages.wazuh.com/key/GPG-KEY-WAZUH
+    gpgcheck: true
+  changed_when: false
+
+- name: Update
+  become: true
+  yum: 
+    update_cache: yes
+- name: wait
+  pause:
+    minutes: 5
+- name: Install Wazuh
+  become: true
+  yum: 
+    name: wazuh-agent
+- name: Copy ossec.conf 
+  template:
+    src: ossec.conf.j2
+    dest: "/var/ossec/etc/ossec.conf"
+    owner: root
+    group: ossec
+- name: Copy local_internal_options.conf 
+  template:
+    src: local_internal_options.conf.j2
+    dest: "/var/ossec/etc/local_internal_options.conf"
+    owner: root
+    group: ossec
+
+
+- name: daemon-reload
+  become: true
+  command: "systemctl daemon-reload"
+- name: enable wazuh
+  become: true
+  command: "systemctl enable wazuh-agent"
+- name: start wazuh
+  become: true
+  command: "systemctl start wazuh-agent"

@@ -1,0 +1,6 @@
+- name: configura win DC
+  hosts: anillounico
+  roles:
+      - win_dns_server
+      - win-splunk
+      - sysmon

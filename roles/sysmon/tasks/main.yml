@@ -1,0 +1,6 @@
+---
+- include_tasks: 1-create_directory.yml
+- include_tasks: 2-install_sysmon.yml
+  ignore_errors: yes 
+- include_tasks: 3-configure_registry.yml
+- include_tasks: 4-reboot.yml

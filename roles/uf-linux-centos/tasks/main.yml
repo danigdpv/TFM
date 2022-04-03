@@ -1,0 +1,4 @@
+---
+- include_tasks: 1-installsplunkuflinux.yml
+- include_tasks: 2-deploymentclient.yml
+- include_tasks: 3-restartsplunk.yml

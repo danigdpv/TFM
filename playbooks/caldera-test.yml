@@ -1,0 +1,5 @@
+- hosts: testSH
+  gather_facts: False
+  become: yes
+  roles:
+    - caldera

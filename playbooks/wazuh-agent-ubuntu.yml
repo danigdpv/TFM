@@ -1,0 +1,5 @@
+- hosts: wazuh-agent-ubuntu 
+  gather_facts: False
+  become: yes
+  roles:
+    - wazuh-agent-ubuntu

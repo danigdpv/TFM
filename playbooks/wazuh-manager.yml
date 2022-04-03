@@ -1,0 +1,7 @@
+- hosts: sherlock
+  gather_facts: False
+  become: yes
+  roles:
+    - wazuh_server
+    - uf_linux
+    - auditd

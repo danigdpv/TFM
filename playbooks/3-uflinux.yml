@@ -1,0 +1,6 @@
+- hosts: pinguino
+  gather_facts: False
+  become: yes
+  roles:
+    - uf_linux
+    - auditd

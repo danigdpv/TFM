@@ -1,0 +1,14 @@
+- name: copy nessus
+  become: true
+  copy:
+    src: Nessus-10.1.0-debian6_amd64.deb
+    dest: /tmp/
+- name: Install nessus
+  become: true
+  apt: deb="/tmp/Nessus-10.1.0-debian6_amd64.deb"
+- name: boot start nessus
+  become: true
+  command: "systemctl enable --now nessusd"
+- name: start nessus
+  become: true
+  command: "systemctl start nessusd"

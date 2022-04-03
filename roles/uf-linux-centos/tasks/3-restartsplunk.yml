@@ -1,0 +1,4 @@
+---
+
+- name: Restart splunk
+  command: /opt/splunkforwarder/bin/splunk restart

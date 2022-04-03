@@ -1,0 +1,5 @@
+- hosts: directordeorquesta 
+  gather_facts: False
+  become: yes
+  roles:
+    - wazuh-agent-centos

@@ -1,0 +1,9 @@
+---
+
+- name: Create sysmon directories
+  win_file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - 'c:\Program Files\sysmon'
+    - 'c:\ProgramData\sysmon\log'

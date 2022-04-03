@@ -1,0 +1,1 @@
+Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.2.5-1.msi -OutFile wazuh-agent.msi; .\wazuh-agent.msi /q WAZUH_MANAGER='sherlock.cosasdecasa.com' WAZUH_REGISTRATION_SERVER='sherlock.cosasdecasa.com'

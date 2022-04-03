@@ -1,0 +1,11 @@
+#  Default rules for rsyslog.
+#
+#                       For more information see rsyslog.conf(5) and /etc/rsyslog.conf
+
+#
+# First some standard log files.  Log by facility.
+#
+$PreserveFQDN on
+security.info,auth,authpriv.*		/var/log/auth.log
+*.crit;daemon.debug;kern.info;user.info		/var/log/messages
+

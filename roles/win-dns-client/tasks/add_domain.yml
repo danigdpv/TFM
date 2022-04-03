@@ -1,0 +1,21 @@
+---
+
+- name: Change dns server to domain controller
+  win_dns_client:
+    ipv4_addresses: "{{ windows_domain_controller_private_ip }}"
+
+- name: reboot | Rebooting Server
+  win_reboot:
+
+- name: Copy join domain script to host
+  win_copy:
+    src: "join_domain.ps1"
+    dest: 'C:\join_domain.ps1'
+
+- name: Run join domain
+  win_shell: "C:\\join_domain.ps1 tfm.local Administrator@tfm.local {{ ansible_pass }}"
+  register: win_shell_output
+
+
+
+- win_reboot:

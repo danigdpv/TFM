@@ -1,0 +1,14 @@
+---
+
+- name: Create folder directory for deplyment client configuration
+  ansible.builtin.file:
+    path: /opt/splunkforwarder/etc/apps/linux_deploymentclient_app/local
+    state: directory
+    group: splunk
+    owner: splunk
+- name: Copy a deploymentclient.conf using templating
+  ansible.builtin.template:
+    src: deploymentclient.conf.j2
+    dest: /opt/splunkforwarder/etc/apps/linux_deploymentclient_app/local/deploymentclient.conf
+    group: splunk
+    owner: splunk

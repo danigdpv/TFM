@@ -1,0 +1,6 @@
+- name: Configura las configuraciones iniciales comunes de un servidor windows
+  hosts: all_windows
+  roles:
+          - win-splunk
+          - sysmon
+          - win_other_apps

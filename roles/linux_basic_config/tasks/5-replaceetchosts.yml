@@ -1,0 +1,7 @@
+---
+  - name: replace hostname from /etc/hosts
+    tags: replacehost
+    ansible.builtin.replace:
+        path: /etc/hosts
+        regexp: avnode
+        replace: "{{ name_machine }}"

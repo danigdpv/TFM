@@ -1,0 +1,5 @@
+- hosts: masternode 
+  gather_facts: False
+  become: yes
+  roles:
+    - linux_basic_config

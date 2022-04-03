@@ -1,0 +1,6 @@
+- hosts: elojoquetodolove
+  gather_facts: False
+  become: yes
+  roles:
+    - sh_linux
+    - auditd

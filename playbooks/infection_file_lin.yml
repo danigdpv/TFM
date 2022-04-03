@@ -1,0 +1,5 @@
+- hosts: linux
+  gather_facts: False
+  become: yes
+  roles:
+    - infection_monley_path_lin

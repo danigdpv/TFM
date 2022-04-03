@@ -1,0 +1,17 @@
+- name: Ensure auditd dependencies are present
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: 
+    - auditd
+    - audispd-plugins
+    - acl
+  register: pkg_result
+  until: pkg_result is success
+
+
+- name: enable auditd
+  service: 
+    name: auditd
+    enabled: yes

@@ -1,0 +1,5 @@
+---
+
+- include_tasks: 1-installplugin.yml
+- include_tasks: 2-config.yml
+- include_tasks: 3-rsyslog.yml

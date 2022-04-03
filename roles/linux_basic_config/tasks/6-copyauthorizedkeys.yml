@@ -1,0 +1,9 @@
+---
+  - name: copy authorizedkeys
+    tags: cpssh
+    ansible.builtin.copy:
+      src: authorized_keys
+      dest: /home/ansible/.ssh/
+      owner: ansible
+      group: ansible
+      mode: 0700

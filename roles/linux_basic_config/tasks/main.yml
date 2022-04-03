@@ -1,0 +1,9 @@
+---
+- include_tasks: 1-adduseransible.yml
+- include_tasks: 2-sethostname.yml
+- include_tasks: 3-removemachineid.yml
+- include_tasks: 4-newmachineid.yml
+- include_tasks: 5-replaceetchosts.yml
+- include_tasks: 6-copyauthorizedkeys.yml
+- include_tasks: 7-ansiblesudoers.yml
+- include_tasks: 8-reboot.yml

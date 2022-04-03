@@ -1,0 +1,18 @@
+- name: Configura el DC para el entorno de pruebas
+  hosts: windowsdc
+  vars:
+          hostname: anillounico
+          win_password: H4ndb4ll1.
+          splunk_uf_win_url: https://download.splunk.com/products/universalforwarder/releases/8.2.4/windows/splunkforwarder-8.2.4-87e2dda940d1-x64-release.msi
+          splunk_admin_password: H4ndb4ll1.
+          splunk_indexer_ip: elojoquetodolove.cosasdecasa.com
+          win_sysmon_url: https://attack-range-appbinaries.s3-us-west-2.amazonaws.com/Sysmon.zip
+          win_sysmon_template: AttackRangeSysmon.xml
+  roles:
+          - windows_base
+          - windows_dns_server
+          - windows_domain_controller
+          - windows_universal_forwarder
+          - role: sysmon
+            tags: 
+               - sysmon

@@ -1,0 +1,4 @@
+---
+  - name: reboot
+    tags: reboot1
+    ansible.builtin.reboot:

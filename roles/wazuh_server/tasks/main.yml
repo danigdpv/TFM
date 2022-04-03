@@ -1,0 +1,2 @@
+---
+- include_tasks: 1-InstallWazuh.yml

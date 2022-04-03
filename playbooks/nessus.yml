@@ -1,0 +1,8 @@
+- hosts: elrevisor
+  gather_facts: False
+  become: yes
+  roles:
+    - nessus
+    - uf_linux
+    - auditd
+    - wazuh_agent
